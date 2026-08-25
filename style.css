@@ -203,6 +203,54 @@ table {
     z-index: 1;
 }
 
+.cold-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.cold-table {
+    min-width: 500px;
+    table-layout: fixed;
+}
+
+.cold-table th,
+.cold-table td {
+    padding: 7px 4px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.cold-table thead th {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+.cold-table tbody th {
+    width: 82px;
+    text-align: left;
+    color: #f56600;
+}
+
+.cold-table tbody td {
+    height: 32px;
+}
+
+.cold-table .camera-day {
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cold-table .vacation-day {
+    background: #fce7f3;
+    color: #be185d;
+    font-weight: bold;
+    text-align: center;
+}
+
 th,
 td {
     padding: 8px 6px;
