@@ -298,6 +298,7 @@ th {
 
 .days-cell {
     width: 95px;
+    font-weight: bold;
     text-align: center;
     font-size: 11px;
     white-space: nowrap;
