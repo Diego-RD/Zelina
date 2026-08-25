@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Swift-Zelina</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Swift
+        </div>
+
+        <nav>
+            <button class="menu-item active">🏠 Dashboard</button>
+            <button class="menu-item">📅 Produto foco</button>
+            <button class="menu-item">📋 Validade</button>
+            <button class="menu-item">⭐ NPS</button>
+            <button class="menu-item">❄️ Câmara fria</button>
+            <button class="menu-item">📢 Avisos</button>
+            <button class="menu-item">👤 Perfil</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            Seja rápido.<br>
+            Seja Swift.
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header>
+
+            <div>
+                <h1>Olá, Equipe Swift-Zelina! 👋</h1>
+                <p>Aqui você encontra as informações principais da loja.</p>
+            </div>
+
+            <div class="user">
+                👤 Funcionário ▾
+            </div>
+
+        </header>
+
+
+        <section class="dashboard">
+
+
+            <!-- PRODUTO FOCO -->
+
+            <div class="card foco">
+
+                <div class="product-image">
+                    <img src="img/carne-moida.png.png" alt="Carne moida light">
+                </div>
+                
+            </div>
+
+
+            <!-- VALIDADE -->
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h2>📅 PLANILHA DE VALIDADE</h2>
+                    <a>Ver todos</a>
+                </div>
+
+                <div class="table-scroll">
+                    <table id="validity-table">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Validade</th>
+                                <th class="quantity-cell">Quantidade</th>
+                                <th class="days-cell">Falta</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!-- NPS -->
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h2>⭐ NPS - SATISFAÇÃO DO CLIENTE</h2>
+                    <a>Ver detalhes</a>
+                </div>
+
+                <div class="nps">
+
+                    <div class="nps-score">
+                        <div class="circle">
+                            <strong>91,5%</strong>
+                            <span>NPS</span>
+                        </div>
+                    </div>
+
+                    <div class="nps-info">
+
+                        <h3>Estamos no caminho certo!</h3>
+
+                        <p>
+                            Continue oferecendo a qualidade
+                            Swift que nossos clientes merecem.
+                        </p>
+
+                        <div class="nps-values">
+
+                            <div class="promotores">
+                                <strong>78</strong>
+                                <span>Promotores</span>
+                            </div>
+
+                            <div class="neutros">
+                                <strong>1</strong>
+                                <span>Neutros</span>
+                            </div>
+
+                            <div class="detratores">
+                                <strong>3</strong>
+                                <span>Detratores</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CÂMARA FRIA -->
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h2>❄️ TABELA DA CÂMARA FRIA SWIFT</h2>
+                    <a>Ver todas</a>
+                </div>
+
+                <table>
+
+                    
+
+                </table>
+
+            </div>
+
+
+            <!-- AVISOS -->
+
+            <div class="card full">
+
+                <div class="card-header">
+                    <h2>📢 AVISOS IMPORTANTES</h2>
+                    <a>Ver todos</a>
+                </div>
+
+                <div class="notices">
+
+                    <div class="notice">
+                        <span>📢</span>
+                        <div>
+                            <h3>Campanha </h3>
+                            <p>
+                                Divulgue os produtos da campanha
+                                de inverno.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="notice">
+                        <span>🏷️</span>
+                        <div>
+                            <h3>Reunião da Equipe</h3>
+                            <p>
+                                Reunião mensal da equipe.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="notice">
+                        <span>🏆</span>
+                        <div>
+                            <h3>Meta do Mês</h3>
+                            <p>
+                                Foco e determinação!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            Swift • Qualidade que faz a diferença
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
