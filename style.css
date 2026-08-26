@@ -180,6 +180,23 @@ header p {
     cursor: pointer;
 }
 
+.validity-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #777;
+    font-size: 13px;
+}
+
+.validity-filter select {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    padding: 7px 28px 7px 9px;
+    cursor: pointer;
+}
+
 
 /* TABLE */
 
@@ -197,11 +214,31 @@ table {
     min-width: 500px;
 }
 
+#validity-table,
+.cold-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
 .table-scroll thead th {
     position: sticky;
     top: 0;
     background: white;
     z-index: 1;
+}
+
+#validity-table th:first-child,
+#validity-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: white;
+    background-clip: padding-box;
+    box-shadow: 2px 0 0 white, 5px 0 6px -5px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+#validity-table thead th:first-child {
+    z-index: 3;
 }
 
 .cold-table-scroll {
@@ -226,6 +263,19 @@ table {
     top: 0;
     background: white;
     z-index: 1;
+}
+
+.cold-table th:first-child {
+    position: sticky;
+    left: 0;
+    background: white;
+    background-clip: padding-box;
+    box-shadow: 2px 0 0 white, 5px 0 6px -5px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.cold-table thead th:first-child {
+    z-index: 3;
 }
 
 .cold-table tbody th {
@@ -277,6 +327,12 @@ th {
     font-size: 12px;
     line-height: 1.2;
     overflow-wrap: anywhere;
+}
+
+.empty-state {
+    padding: 24px 8px;
+    color: #777;
+    text-align: center;
 }
 
 .danger,
@@ -350,7 +406,7 @@ th {
 
 .circle strong {
     font-size: 35px;
-    color:#2ae976;
+    color:#070808;
 }
 
 .nps-info h3 {
@@ -564,7 +620,7 @@ footer {
 
     .product-image img {
         width: 100%;
-        max-height: 170px;
+        max-height: 270px;
         object-fit: contain;
     }
 

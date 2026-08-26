@@ -65,7 +65,7 @@ function obterStatus(diasRestantes) {
 		return { texto: "Vencido", classe: "danger" };
 	}
 
-	if (diasRestantes <= 25) {
+	if (diasRestantes <= 30) {
 		return { texto: "A vencer", classe: "warning" };
 	}
 
@@ -84,10 +84,28 @@ function formatarDiasRestantes(diasRestantes) {
   return `${diasRestantes} dias`;
 }
 
-function preencherTabelaValidade() {
+function preencherTabelaValidade(filtro = "todos") {
 	const tabela = document.querySelector("#validity-table tbody");
+	tabela.innerHTML = "";
 
-	produtosComValidade.forEach(({ produto, validade, quantidade }) => {
+  const produtosFiltrados = produtosComValidade.filter(({ validade }) => {
+    if (filtro === "todos") {
+      return true;
+    }
+
+    return obterStatus(obterDiasRestantes(validade)).classe === filtro;
+  });
+
+  if (produtosFiltrados.length === 0) {
+    tabela.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-state">Nenhum produto encontrado neste filtro.</td>
+      </tr>
+    `;
+    return;
+  }
+
+	produtosFiltrados.forEach(({ produto, validade, quantidade }) => {
     const diasRestantes = obterDiasRestantes(validade);
     const status = obterStatus(diasRestantes);
 		const linha = document.createElement("tr");
@@ -104,4 +122,10 @@ function preencherTabelaValidade() {
 	});
 }
 
-preencherTabelaValidade();
+const filtroValidade = document.querySelector("#validity-filter");
+
+filtroValidade.addEventListener("change", (evento) => {
+  preencherTabelaValidade(evento.target.value);
+});
+
+preencherTabelaValidade(filtroValidade.value);

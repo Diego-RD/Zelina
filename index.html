@@ -27,10 +27,7 @@
             <button class="menu-item">👤 Perfil</button>
         </nav>
 
-        <div class="sidebar-bottom">
-            Seja rápido.<br>
-            Seja Swift.
-        </div>
+        
 
     </aside>
 
@@ -71,7 +68,15 @@
 
                 <div class="card-header">
                     <h2>📅 PLANILHA DE VALIDADE</h2>
-                    <a>Ver todos</a>
+                    <label class="validity-filter">
+                        <span>Filtrar:</span>
+                        <select id="validity-filter" aria-label="Filtrar produtos por validade">
+                            <option value="todos">Todos</option>
+                            <option value="danger">Vencidos</option>
+                            <option value="warning">A vencer</option>
+                            <option value="success">Em dia</option>
+                        </select>
+                    </label>
                 </div>
 
                 <div class="table-scroll">
@@ -81,7 +86,7 @@
                                 <th>Produto</th>
                                 <th>Validade</th>
                                 <th class="quantity-cell">Quantidade</th>
-                                <th class="days-cell">Falta</th>
+                                <th class="days-cell">Dias</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -98,14 +103,13 @@
 
                 <div class="card-header">
                     <h2>⭐ NPS - SATISFAÇÃO DO CLIENTE</h2>
-                    <a>Ver detalhes</a>
                 </div>
 
                 <div class="nps">
 
                     <div class="nps-score">
                         <div class="circle">
-                            <strong>91,5%</strong>
+                            <strong>91,8%</strong>
                             <span>NPS</span>
                         </div>
                     </div>
@@ -122,7 +126,7 @@
                         <div class="nps-values">
 
                             <div class="promotores">
-                                <strong>78</strong>
+                                <strong>81</strong>
                                 <span>Promotores</span>
                             </div>
 
@@ -151,7 +155,6 @@
 
                 <div class="card-header">
                     <h2>❄️ TABELA DA CÂMARA FRIA SWIFT</h2>
-                    <a>Ver todas</a>
                 </div>
 
                 <div class="cold-table-scroll">
@@ -304,7 +307,7 @@
         </section>
 
         <footer>
-             - Desenvolvido por Diego (Projeto pessoal de estudo).
+                 Desenvolvido por Diego (Projeto pessoal de estudo).
         </footer>
 
     </main>
