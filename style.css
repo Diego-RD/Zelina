@@ -113,7 +113,38 @@ header p {
 .full {
     grid-column: 1 / -1;
 }
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#btnSair {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
+#btnSair:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#btnSair:active {
+    transform: translateY(0);
+}
+
+#btnSair:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
 
 /* FOCO */
 

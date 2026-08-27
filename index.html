@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
             <button class="menu-item">👤 Perfil</button>
         </nav>
 
-        
+
 
     </aside>
 
@@ -42,7 +43,7 @@
             </div>
 
             <div class="user">
-                👤 Funcionário ▾
+                <button id="btnSair">Sair</button>
             </div>
 
         </header>
@@ -58,7 +59,7 @@
                 <div class="product-image">
                     <img src="img/carne-moida.png.png" alt="Carne moida light">
                 </div>
-                
+
             </div>
 
 
@@ -124,6 +125,7 @@
                         </p>
 
                         <div class="nps-values">
+
 
                             <div class="promotores">
                                 <strong>83</strong>
@@ -307,12 +309,30 @@
         </section>
 
         <footer>
-                 Desenvolvido por Diego (Projeto pessoal de estudo).
+            Desenvolvido por Diego (Projeto pessoal de estudo).
         </footer>
 
     </main>
 
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const supabaseUrl = 'https://qwulavohnlhfnqlvfjhc.supabase.co';
+        const supabaseKey = 'sb_publishable_UbO01YTgK-QBFGib30RmhA_6wvnmzeM';
+
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+        window.supabaseClient = supabaseClient;
+
+        const { data: { session } } = await supabaseClient.auth.getSession();
+
+        if (!session) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>

@@ -129,3 +129,28 @@ filtroValidade.addEventListener("change", (evento) => {
 });
 
 preencherTabelaValidade(filtroValidade.value);
+
+const btnSair = document.getElementById('btnSair');
+
+if (btnSair) {
+  btnSair.addEventListener('click', async () => {
+    btnSair.disabled = true;
+
+    const supabaseClient = window.supabaseClient;
+    if (!supabaseClient) {
+      console.error('Cliente Supabase ainda não foi inicializado.');
+      btnSair.disabled = false;
+      return;
+    }
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        console.error('Erro ao sair:', error);
+        btnSair.disabled = false;
+        return;
+    }
+
+    window.location.href = 'login.html';
+  });
+}
