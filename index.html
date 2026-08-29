@@ -110,7 +110,7 @@
 
                     <div class="nps-score">
                         <div class="circle">
-                            <strong>88,8%</strong>
+                            <strong>89,6%</strong>
                             <span>NPS</span>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
 
 
                             <div class="promotores">
-                                <strong>83</strong>
+                                <strong>90</strong>
                                 <span>Promotores</span>
                             </div>
 
@@ -314,23 +314,7 @@
 
     </main>
 
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-        const supabaseUrl = 'https://qwulavohnlhfnqlvfjhc.supabase.co';
-        const supabaseKey = 'sb_publishable_UbO01YTgK-QBFGib30RmhA_6wvnmzeM';
-
-        const supabaseClient = createClient(supabaseUrl, supabaseKey);
-        window.supabaseClient = supabaseClient;
-
-        const { data: { session } } = await supabaseClient.auth.getSession();
-
-        if (!session) {
-            window.location.href = 'login.html';
-        }
-    </script>
-
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 
 
 </body>

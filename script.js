@@ -1,4 +1,36 @@
-const produtosComValidade = [
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const supabaseUrl = 'https://qwulavohnlhfnqlvfjhc.supabase.co';
+const supabaseKey = 'sb_publishable_UbO01YTgK-QBFGib30RmhA_6wvnmzeM';
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+const { data: { session } } = await supabaseClient.auth.getSession();
+
+if (!session) {
+  window.location.replace('login.html');
+} else {
+  iniciarPainel();
+}
+
+async function iniciarPainel() {
+const tabela = document.querySelector("#validity-table tbody");
+tabela.innerHTML = '<tr><td colspan="5" class="empty-state">Carregando produtos...</td></tr>';
+
+const { data: produtosComValidade, error } = await supabaseClient
+  .from("produtos")
+  .select("produto:nome, validade, quantidade")
+  .order("validade", { ascending: true });
+
+if (error) {
+  tabela.innerHTML = '<tr><td colspan="5" class="empty-state">Não foi possível carregar os produtos.</td></tr>';
+  console.error("Erro ao carregar produtos:", error.message);
+  return;
+}
+
+const produtos = produtosComValidade ?? [];
+
+/* Dados antigos mantidos temporariamente para referência durante a migração.
+const dadosExemplo = [
   { "produto": "QUIBE SWIFT 360 G", "validade": "2026-08-02", "quantidade": 6 },
   { "produto": "PETIT GATEAU DOCE DE LEITE HAVANNA 160 G", "validade": "2026-08-09", "quantidade": 10 },
   { "produto": "BATATA PALHA EXTRA FINA PEPSICO 90G", "validade": "2026-08-10", "quantidade": 14 },
@@ -45,7 +77,7 @@ const produtosComValidade = [
   { "produto": "VIEIRA SWIFT 200 G", "validade": "2026-10-18", "quantidade": 7 },
   { "produto": "COCO RALADO UMID ADOC DA TERRINHA 100 G", "validade": "2026-10-20", "quantidade": 15 },
   { "produto": "PE DE MOLEQUE SANTA HELENA 225 G", "validade": "2026-10-20", "quantidade": 16 }
-];
+]; */
 
 function formatarData(data) {
 	return new Intl.DateTimeFormat("pt-BR").format(new Date(`${data}T00:00:00`));
@@ -86,7 +118,7 @@ function formatarDiasRestantes(diasRestantes) {
 
 function preencherTabelaValidade(filtro = "todos") {
 	const tabela = document.querySelector("#validity-table tbody");
-	tabela.innerHTML = "";
+  tabela.replaceChildren();
 
   const produtosFiltrados = produtosComValidade.filter(({ validade }) => {
     if (filtro === "todos") {
@@ -97,11 +129,13 @@ function preencherTabelaValidade(filtro = "todos") {
   });
 
   if (produtosFiltrados.length === 0) {
-    tabela.innerHTML = `
-      <tr>
-        <td colspan="5" class="empty-state">Nenhum produto encontrado neste filtro.</td>
-      </tr>
-    `;
+    const linhaVazia = document.createElement("tr");
+    const celulaVazia = document.createElement("td");
+    celulaVazia.colSpan = 5;
+    celulaVazia.className = "empty-state";
+    celulaVazia.textContent = "Nenhum produto encontrado neste filtro.";
+    linhaVazia.appendChild(celulaVazia);
+    tabela.appendChild(linhaVazia);
     return;
   }
 
@@ -109,14 +143,28 @@ function preencherTabelaValidade(filtro = "todos") {
     const diasRestantes = obterDiasRestantes(validade);
     const status = obterStatus(diasRestantes);
 		const linha = document.createElement("tr");
+    const statusCelula = document.createElement("td");
+    const statusTexto = document.createElement("span");
 
-		linha.innerHTML = `
-      <td class="product-name">${produto}</td>
-			<td>${formatarData(validade)}</td>
-      <td class="quantity-cell">${quantidade}</td>
-      <td class="days-cell">${formatarDiasRestantes(diasRestantes)}</td>
-      <td class="status-cell"><span class="${status.classe}">${status.texto}</span></td>
-		`;
+    const criarCelula = (valor, classe = "") => {
+      const celula = document.createElement("td");
+      celula.className = classe;
+      celula.textContent = valor ?? "";
+      return celula;
+    };
+
+    statusCelula.className = "status-cell";
+    statusTexto.className = status.classe;
+    statusTexto.textContent = status.texto;
+    statusCelula.appendChild(statusTexto);
+
+    linha.append(
+      criarCelula(produto, "product-name"),
+      criarCelula(formatarData(validade)),
+      criarCelula(quantidade, "quantity-cell"),
+      criarCelula(formatarDiasRestantes(diasRestantes), "days-cell"),
+      statusCelula
+    );
 
 		tabela.appendChild(linha);
 	});
@@ -136,13 +184,6 @@ if (btnSair) {
   btnSair.addEventListener('click', async () => {
     btnSair.disabled = true;
 
-    const supabaseClient = window.supabaseClient;
-    if (!supabaseClient) {
-      console.error('Cliente Supabase ainda não foi inicializado.');
-      btnSair.disabled = false;
-      return;
-    }
-
     const { error } = await supabaseClient.auth.signOut();
 
     if (error) {
@@ -153,4 +194,5 @@ if (btnSair) {
 
     window.location.href = 'login.html';
   });
+}
 }
